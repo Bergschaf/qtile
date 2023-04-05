@@ -168,6 +168,30 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 screens = [
+
+    Screen(
+        top=bar.Bar(
+            [
+                # widget.Sep(padding=20, linewidth=5, foreground="ffffff"),
+
+                widget.GroupBox(),
+                widget.Prompt(),
+                widget.WindowName(),
+                widget.Systray(),
+                widget.Clock(padding=30),
+
+                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
+                # widget.StatusNotifier(),
+                # widget.Systray(),
+
+            ],
+            30,
+            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
+            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+        ),
+        wallpaper="~/Pictures/garuda-wallpapers/src/garuda-wallpapers/Shani.png",
+        wallpaper_mode="fill"
+    ),
     Screen(
         # bottom=bar.Bar(
         #    [
@@ -194,29 +218,6 @@ screens = [
         #    border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         # ),
         wallpaper="~/Pictures/garuda-wallpapers/src/garuda-wallpapers/Darkwing Beast.jpg",
-        wallpaper_mode="fill"
-    ),
-    Screen(
-        top=bar.Bar(
-            [
-                # widget.Sep(padding=20, linewidth=5, foreground="ffffff"),
-
-                widget.GroupBox(),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.Systray(),
-                widget.Clock(padding=30),
-
-                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-                # widget.StatusNotifier(),
-                # widget.Systray(),
-
-            ],
-            30,
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
-        ),
-        wallpaper="~/Pictures/garuda-wallpapers/src/garuda-wallpapers/Shani.png",
         wallpaper_mode="fill"
     ),
 ]
