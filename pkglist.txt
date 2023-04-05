@@ -1352,7 +1352,6 @@ xxhash
 xz
 yad
 yaml-cpp
-yay-bin
 zbar
 zenity
 zeromq
