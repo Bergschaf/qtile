@@ -41,6 +41,7 @@ terminal = guess_terminal()
 WALLPAPER_DIR = os.path.expanduser("~/.config/qtile/wallpapers")
 WALLPAPER_CHANGE_MIN = 10
 
+
 class Timer():
     def __init__(self, timeout: int, callback: Callable) -> None:
         self.callback = callback
@@ -49,6 +50,7 @@ class Timer():
 
     def call(self) -> None:
         self.callback()
+
         self.setup_timer()
 
     def setup_timer(self) -> None:
@@ -64,10 +66,14 @@ def set_random_wallpaper() -> None:
         screen.cmd_set_wallpaper(wallpaper, 'fill')
 
 
-@hook.subscribe.startup
-def autostart():
+@hook.subscribe.startup_once
+def autostart_once():
     Timer(
         WALLPAPER_CHANGE_MIN * 60, set_random_wallpaper)
+
+
+@hook.subscribe.startup
+def autostart():
     shell_processes = [
         "feh --bg-fill /home/bergschaf/.config/qtile/wallpapers/Metall SGS.png",
         "picom --config ~/.config/qtile/picom-blur.conf",
@@ -146,6 +152,7 @@ keys = [
     Key([alt], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+    Key([win], "l", lazy.spawn("slock"), desc="Lock the screen"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 ]
 groups = [Group("1", spawn="discord"), Group("2", spawn="spotify")]
@@ -212,7 +219,7 @@ screens = [
         bar.Bar(
             [
                 # widget.Sep(padding=20, linewidth=5, foreground="ffffff"),
-
+                widget.TextBox(" ", padding=10),
                 widget.GroupBox(),
                 widget.Prompt(),
                 widget.WindowName(),
@@ -226,21 +233,22 @@ screens = [
             ],
             30,
             # padding above and below the bar
-            margin=[10, 20, 10, 20], #
+            margin=[10, 20, 10, 20],  #
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
-        #wallpaper="~/Pictures/garuda-wallpapers/src/garuda-wallpapers/Shani.png",
-        #wallpaper_mode="fill"
+        # wallpaper="~/Pictures/garuda-wallpapers/src/garuda-wallpapers/Shani.png",
+        # wallpaper_mode="fill"
     ),
     Screen(
-        left= bar.Gap(20),
+        left=bar.Gap(20),
         right=bar.Gap(20),
         bottom=bar.Gap(20),
         top=bar.Bar(
             [
                 # widget.Sep(padding=20, linewidth=5, foreground="ffffff"),
-
+                # spacer
+                widget.TextBox(" ", padding=10),
                 widget.GroupBox(),
                 widget.Prompt(),
                 widget.WindowName(),
@@ -253,13 +261,13 @@ screens = [
 
             ],
             30,
-            margin=[10, 20, 10, 20], #
+            margin=[10, 20, 10, 20],  #
 
             #    border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             #    border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
-        #wallpaper="~/Pictures/garuda-wallpapers/src/garuda-wallpapers/Darkwing Beast.jpg",
-        #wallpaper_mode="fill"
+        # wallpaper="~/Pictures/garuda-wallpapers/src/garuda-wallpapers/Darkwing Beast.jpg",
+        # wallpaper_mode="fill"
     ),
 ]
 
