@@ -41,7 +41,6 @@ terminal = guess_terminal()
 
 @hook.subscribe.startup
 def autostart():
-
     shell_processes = [
         "picom --config ~/.config/qtile/picom-blur.conf",
         "xmodmap ~/.config/qtile/.xmodmap",
