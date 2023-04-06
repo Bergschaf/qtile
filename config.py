@@ -212,9 +212,9 @@ extension_defaults = widget_defaults.copy()
 screens = [
 
     Screen(
-        left=bar.Gap(20),
-        right=bar.Gap(20),
-        bottom=bar.Gap(20),
+        left=bar.Gap(10),
+        right=bar.Gap(10),
+        bottom=bar.Gap(10),
         top=
         bar.Bar(
             [
@@ -233,7 +233,7 @@ screens = [
             ],
             30,
             # padding above and below the bar
-            margin=[10, 20, 10, 20],  #
+            margin=[10, 10, 10, 10],  #
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
@@ -241,9 +241,9 @@ screens = [
         # wallpaper_mode="fill"
     ),
     Screen(
-        left=bar.Gap(20),
-        right=bar.Gap(20),
-        bottom=bar.Gap(20),
+        left=bar.Gap(10),
+        right=bar.Gap(10),
+        bottom=bar.Gap(10),
         top=bar.Bar(
             [
                 # widget.Sep(padding=20, linewidth=5, foreground="ffffff"),
@@ -261,7 +261,7 @@ screens = [
 
             ],
             30,
-            margin=[10, 20, 10, 20],  #
+            margin=[10, 10, 10, 10],  #
 
             #    border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             #    border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
