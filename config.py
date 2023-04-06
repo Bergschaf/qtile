@@ -38,10 +38,38 @@ mod = win
 strg = "control"
 
 terminal = guess_terminal()
+WALLPAPER_DIR = os.path.expanduser("~/.config/qtile/wallpapers")
+WALLPAPER_CHANGE_MIN = 10
+
+class Timer():
+    def __init__(self, timeout: int, callback: Callable) -> None:
+        self.callback = callback
+        self.timeout = timeout
+        self.call()
+
+    def call(self) -> None:
+        self.callback()
+        self.setup_timer()
+
+    def setup_timer(self) -> None:
+        self.timer = qtile.call_later(self.timeout, self.call)
+
+
+def set_random_wallpaper() -> None:
+    wallpapers = [
+        os.path.join(WALLPAPER_DIR, x) for x in os.listdir(WALLPAPER_DIR) if x[-4:] == ".jpg"
+    ]
+    for screen in qtile.screens:
+        wallpaper = random.choice(wallpapers)
+        screen.cmd_set_wallpaper(wallpaper, 'fill')
+
 
 @hook.subscribe.startup
 def autostart():
+    Timer(
+        WALLPAPER_CHANGE_MIN * 60, set_random_wallpaper)
     shell_processes = [
+        "feh --bg-fill /home/bergschaf/.config/qtile/wallpapers/Metall SGS.png",
         "picom --config ~/.config/qtile/picom-blur.conf",
         "xmodmap ~/.config/qtile/.xmodmap",
     ]
@@ -177,6 +205,38 @@ extension_defaults = widget_defaults.copy()
 screens = [
 
     Screen(
+        left=bar.Gap(20),
+        right=bar.Gap(20),
+        bottom=bar.Gap(20),
+        top=
+        bar.Bar(
+            [
+                # widget.Sep(padding=20, linewidth=5, foreground="ffffff"),
+
+                widget.GroupBox(),
+                widget.Prompt(),
+                widget.WindowName(),
+                widget.Systray(),
+                widget.Clock(padding=30),
+
+                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
+                # widget.StatusNotifier(),
+                # widget.Systray(),
+
+            ],
+            30,
+            # padding above and below the bar
+            margin=[10, 20, 10, 20], #
+            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
+            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+        ),
+        #wallpaper="~/Pictures/garuda-wallpapers/src/garuda-wallpapers/Shani.png",
+        #wallpaper_mode="fill"
+    ),
+    Screen(
+        left= bar.Gap(20),
+        right=bar.Gap(20),
+        bottom=bar.Gap(20),
         top=bar.Bar(
             [
                 # widget.Sep(padding=20, linewidth=5, foreground="ffffff"),
@@ -193,34 +253,13 @@ screens = [
 
             ],
             30,
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
-        ),
-        wallpaper="~/Pictures/garuda-wallpapers/src/garuda-wallpapers/Shani.png",
-        wallpaper_mode="fill"
-    ),
-    Screen(
-        top=bar.Bar(
-            [
-                # widget.Sep(padding=20, linewidth=5, foreground="ffffff"),
+            margin=[10, 20, 10, 20], #
 
-                widget.GroupBox(),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.Systray(),
-                widget.Clock(padding=30),
-
-                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-                # widget.StatusNotifier(),
-                # widget.Systray(),
-
-            ],
-            24,
             #    border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             #    border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
-        wallpaper="~/Pictures/garuda-wallpapers/src/garuda-wallpapers/Darkwing Beast.jpg",
-        wallpaper_mode="fill"
+        #wallpaper="~/Pictures/garuda-wallpapers/src/garuda-wallpapers/Darkwing Beast.jpg",
+        #wallpaper_mode="fill"
     ),
 ]
 

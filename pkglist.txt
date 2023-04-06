@@ -3,6 +3,6 @@ code
 pycharm-professional
 xorg-xmodmap
 nitrogen
-rofi
 discord
 spotify
+picom-ibhagwan-git
