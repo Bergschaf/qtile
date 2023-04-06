@@ -23,10 +23,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from libqtile import bar, layout, widget, hook
+from libqtile import bar, layout, widget, hook, qtile
+import os
+import random
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+from typing import Callable
 import subprocess
 
 win = "mod4"
@@ -36,11 +39,12 @@ strg = "control"
 
 terminal = guess_terminal()
 
-
 @hook.subscribe.startup
 def autostart():
+
     shell_processes = [
         "picom --config ~/.config/qtile/picom-blur.conf",
+        "xmodmap ~/.config/qtile/.xmodmap",
     ]
     processes = [
         ["xrandr", "--output", "DP-0", "--off", "--output", "DP-1", "--off", "--output", "DP-2", "--off", "--output",
