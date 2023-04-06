@@ -49,7 +49,7 @@ def autostart():
 
     ]
     for p in shell_processes:
-        subprocess.Popen(p,shell=True)
+        subprocess.Popen(p, shell=True)
     for p in processes:
         subprocess.Popen(p)
 
@@ -213,8 +213,8 @@ screens = [
 
             ],
             24,
-        #    border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-        #    border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+            #    border_width=[2, 0, 2, 0],  # Draw top and bottom borders
+            #    border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
         wallpaper="~/Pictures/garuda-wallpapers/src/garuda-wallpapers/Darkwing Beast.jpg",
         wallpaper_mode="fill"
