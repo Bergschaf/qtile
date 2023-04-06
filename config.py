@@ -42,34 +42,34 @@ WALLPAPER_DIR = os.path.expanduser("~/.config/qtile/wallpapers")
 WALLPAPER_CHANGE_MIN = 10
 
 
-class Timer():
-    def __init__(self, timeout: int, callback: Callable) -> None:
-        self.callback = callback
-        self.timeout = timeout
-        self.call()
-
-    def call(self) -> None:
-        self.callback()
-
-        self.setup_timer()
-
-    def setup_timer(self) -> None:
-        self.timer = qtile.call_later(self.timeout, self.call)
-
-
-def set_random_wallpaper() -> None:
-    wallpapers = [
-        os.path.join(WALLPAPER_DIR, x) for x in os.listdir(WALLPAPER_DIR) if x[-4:] == ".jpg"
-    ]
-    for screen in qtile.screens:
-        wallpaper = random.choice(wallpapers)
-        screen.cmd_set_wallpaper(wallpaper, 'fill')
+#class Timer():
+#    def __init__(self, timeout: int, callback: Callable) -> None:
+#        self.callback = callback
+#        self.timeout = timeout
+#        self.call()
+#
+#    def call(self) -> None:
+#        self.callback()
+#
+#        self.setup_timer()
+#
+#    def setup_timer(self) -> None:
+#        self.timer = qtile.call_later(self.timeout, self.call)
 
 
-@hook.subscribe.startup_once
-def autostart_once():
-    Timer(
-        WALLPAPER_CHANGE_MIN * 60, set_random_wallpaper)
+#def set_random_wallpaper() -> None:
+#    wallpapers = [
+#        os.path.join(WALLPAPER_DIR, x) for x in os.listdir(WALLPAPER_DIR) if x[-4:] == ".jpg"
+#    ]
+#    for screen in qtile.screens:
+#        wallpaper = random.choice(wallpapers)
+#        screen.cmd_set_wallpaper(wallpaper, 'fill')
+#
+
+#@hook.subscribe.startup_once
+#def autostart_once():
+#    Timer(
+#        WALLPAPER_CHANGE_MIN * 60, set_random_wallpaper)
 
 
 @hook.subscribe.startup
