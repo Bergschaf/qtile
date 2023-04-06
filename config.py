@@ -74,8 +74,10 @@ def autostart_once():
 
 @hook.subscribe.startup
 def autostart():
+    import locate_config_files
+    locate_config_files.cp_there()
     shell_processes = [
-        "feh --bg-fill /home/bergschaf/.config/qtile/wallpapers/Metall SGS.png",
+        #"feh --bg-fill /home/bergschaf/.config/qtile/wallpapers/Metall SGS.png",
         "picom --config ~/.config/qtile/picom-blur.conf",
         "xmodmap ~/.config/qtile/.xmodmap",
     ]

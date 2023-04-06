@@ -5,6 +5,7 @@ config = [
     ("alacrity.yml", "~/.config/alacrity/alacrity.yml"),
     ("config.fish", "~/.config/fish/config.fish"),
     ("starship.toml", "~/.config/starship.toml"),
+    ("config.rasi", "~/.config/rofi/config.rasi"),
 ]
 
 
@@ -23,5 +24,5 @@ def cp_there():
         os.system(f"cp {os.path.join(CONFIG_DIR, file[0])} {file[1]}")
 
 if __name__ == '__main__':
-    #cp_here(
     cp_there()
+    cp_here()
