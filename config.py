@@ -39,13 +39,17 @@ terminal = guess_terminal()
 
 @hook.subscribe.startup
 def autostart():
+    shell_processes = [
+        "picom --config ~/.config/qtile/picom-blur.conf",
+    ]
     processes = [
-        ["picom"],
         ["xrandr", "--output", "DP-0", "--off", "--output", "DP-1", "--off", "--output", "DP-2", "--off", "--output",
          "DP-3", "--mode", "1680x1050", "--pos", "2560x195", "--rotate", "normal", "--output", "HDMI-0", "--off",
          "--output", "DP-4", "--mode", "2560x1440", "--pos", "0x0", "--rotate", "normal", "--output", "DP-5", "--off"],
 
     ]
+    for p in shell_processes:
+        subprocess.Popen(p,shell=True)
     for p in processes:
         subprocess.Popen(p)
 
