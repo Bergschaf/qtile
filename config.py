@@ -22,14 +22,13 @@
 # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+import os.path
 
-from libqtile import bar, layout, widget, hook, qtile
-import os
-import random
+from libqtile import bar, layout, widget, hook
+
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
-from typing import Callable
 import subprocess
 
 win = "mod4"
@@ -38,38 +37,15 @@ mod = win
 strg = "control"
 
 terminal = guess_terminal()
-WALLPAPER_DIR = os.path.expanduser("~/.config/qtile/wallpapers")
-WALLPAPER_CHANGE_MIN = 10
 
-
-class Timer():
-    def __init__(self, timeout: int, callback: Callable) -> None:
-        self.callback = callback
-        self.timeout = timeout
-        self.call()
-
-    def call(self) -> None:
-        self.callback()
-
-        self.setup_timer()
-
-    def setup_timer(self) -> None:
-        self.timer = qtile.call_later(self.timeout, self.call)
-
-
-def set_random_wallpaper() -> None:
-    wallpapers = [
-        os.path.join(WALLPAPER_DIR, x) for x in os.listdir(WALLPAPER_DIR) if x[-4:] == ".jpg"
-    ]
-    for screen in qtile.screens:
-        wallpaper = random.choice(wallpapers)
-        screen.cmd_set_wallpaper(wallpaper, 'fill')
 
 
 @hook.subscribe.startup_once
 def autostart_once():
-    Timer(
-        WALLPAPER_CHANGE_MIN * 60, set_random_wallpaper)
+    try:
+        subprocess.Popen(["python", os.path.expanduser("~/.config/qtile/wallpaper_change.py")])
+    except Exception:
+        pass
 
 
 @hook.subscribe.startup
