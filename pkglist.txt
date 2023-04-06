@@ -6,3 +6,4 @@ nitrogen
 discord
 spotify
 picom-ibhagwan-git
+slock
