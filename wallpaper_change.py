@@ -12,7 +12,7 @@ def set_random_wallpaper():
     subprocess.call(["feh", "--bg-fill", os.path.join(WALLPAPER_DIR, wallpaper)])
 
 def start_timer():
-
+    time.sleep(2)
     while True:
         set_random_wallpaper()
         time.sleep(WALLPAPER_CHANGE_MIN * 60)

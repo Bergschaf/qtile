@@ -6,6 +6,7 @@ config = [
     ("config.fish", "~/.config/fish/config.fish"),
     ("starship.toml", "~/.config/starship.toml"),
     ("config.rasi", "~/.config/rofi/config.rasi"),
+    ("conky.conf", "~/.config/conky/conky.conf"),
 ]
 
 

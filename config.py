@@ -33,11 +33,11 @@ import subprocess
 
 win = "mod4"
 alt = "mod1"
+numlock = "mod2"
 mod = win
 strg = "control"
 
 terminal = guess_terminal()
-
 
 
 @hook.subscribe.startup_once
@@ -53,7 +53,7 @@ def autostart():
     import locate_config_files
     locate_config_files.cp_there()
     shell_processes = [
-        #"feh --bg-fill /home/bergschaf/.config/qtile/wallpapers/Metall SGS.png",
+        # "feh --bg-fill /home/bergschaf/.config/qtile/wallpapers/Metall SGS.png",
         "picom --config ~/.config/qtile/picom-blur.conf",
         "xmodmap ~/.config/qtile/.xmodmap",
     ]
