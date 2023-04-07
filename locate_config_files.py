@@ -2,7 +2,7 @@ import os
 
 CONFIG_DIR = "~/.config/qtile/configs"
 config = [
-    ("alacrity.yml", "~/.config/alacrity/alacrity.yml"),
+    ("alacritty.yml", "~/.config/alacritty/alacritty.yml"),
     ("config.fish", "~/.config/fish/config.fish"),
     ("starship.toml", "~/.config/starship.toml"),
     ("config.rasi", "~/.config/rofi/config.rasi"),
@@ -26,4 +26,4 @@ def cp_there():
 
 if __name__ == '__main__':
     cp_there()
-    cp_here()
+    #cp_here()

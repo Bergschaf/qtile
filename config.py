@@ -201,6 +201,7 @@ screens = [
                 widget.GroupBox(),
                 widget.Prompt(),
                 widget.WindowName(),
+                widget.Wlan(interface="wlp3s0", format="{essid} {percent:2.0%}"),
                 widget.Systray(),
                 widget.Clock(padding=30),
 
@@ -210,7 +211,10 @@ screens = [
 
             ],
             30,
+            # set background color to have a transparent bar
+            background=["#00000040"],
             # padding above and below the bar
+
             margin=[10, 10, 10, 10],  #
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
@@ -239,6 +243,8 @@ screens = [
 
             ],
             30,
+            # set background color to have a transparent bar
+            background=["#00000040"],
             margin=[10, 10, 10, 10],  #
 
             #    border_width=[2, 0, 2, 0],  # Draw top and bottom borders

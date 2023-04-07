@@ -70,7 +70,7 @@ colors:
     cursor:     '0xeec49a'
   normal:
     black:      '0x0a1124'
-    red:        '0x5F4149'
+    red:        '0x804746'
     green:      '0xEB3247'
     yellow:     '0xBC4349'
     blue:       '0xF35645'
@@ -79,7 +79,7 @@ colors:
     white:      '0xeec49a'
   bright:
     black:      '0xa6896b'
-    red:        '0x5F4149'
+    red:        '0x804746'
     green:      '0xEB3247'
     yellow:     '0xBC4349'
     blue:       '0xF35645'
