@@ -3,3 +3,4 @@ xorg-xmodmap
 nitrogen
 picom-ibhagwan-git
 slock
+ttf-firacode-nerd
