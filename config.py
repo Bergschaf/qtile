@@ -71,7 +71,7 @@ def autostart():
 
 keys = [
     # Wallpaper change str alt shift w
-    Key([alt], "b", lazy.spawn("python ~/.config/qtile/wallpaper_set_random.py"), desc="Wallpaper change"),
+    Key([alt], "b", lazy.spawn(f"python {os.path.expanduser('~/.config/qtile/wallpaper_set_random.py')}"), desc="Wallpaper change"),
 
     # media playpause str alt shift p
     Key([strg, alt, "shift"], "p", lazy.spawn("playerctl play-pause"), desc="Playpause"),

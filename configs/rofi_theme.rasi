@@ -34,6 +34,7 @@
     alternate-active-foreground: @active-foreground;
     active-background:           rgba ( 57, 57, 57, 60 % );
     selected-active-background:  rgba ( 38, 139, 210, 60 % );
+    prompt-color: rgba ( 243, 86, 69, 100 % );
 }
 window {
     background-color: rgba ( 10, 17, 36, 50 % );
@@ -50,7 +51,7 @@ message {
     padding:      1px ;
 }
 textbox {
-    text-color: @foreground;
+    text-color: @prompt-color;
 }
 listview {
     fixed-height: 0;
@@ -124,7 +125,7 @@ button {
 }
 inputbar {
     spacing:    0;
-    text-color: @normal-foreground;
+    text-color: @prompt-color;
     padding:    1px ;
 }
 case-indicator {
@@ -137,8 +138,9 @@ entry {
 }
 prompt {
     spacing:    0;
-    text-color: @normal-foreground;
+    text-color: @prompt-color;
 }
+
 inputbar {
     children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
 }
@@ -146,5 +148,5 @@ textbox-prompt-colon {
     expand:     false;
     str:        ":";
     margin:     0px 0.3em 0em 0em ;
-    text-color: @normal-foreground;
+    text-color: @prompt-color;
 }
