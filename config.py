@@ -190,7 +190,8 @@ widget_defaults = dict(
     padding=7,
 )
 extension_defaults = widget_defaults.copy()
-battery = widget.Battery(format="{char} {percent:2.0%}", update_interval=5)
+# watt
+battery = widget.Battery(format="{char} {percent:2.0%} {watt:.2f}W", update_interval=5)
 if not battery:
     battery = []
 else:
