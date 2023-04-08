@@ -70,13 +70,16 @@ def autostart():
 
 
 keys = [
+    # Wallpaper change str alt shift w
+    Key([alt], "b", lazy.spawn("python ~/.config/qtile/wallpaper_set_random.py"), desc="Wallpaper change"),
+
     # media playpause str alt shift p
     Key([strg, alt, "shift"], "p", lazy.spawn("playerctl play-pause"), desc="Playpause"),
     # media next str alt shift s
     Key([strg, alt, "shift"], "s", lazy.spawn("playerctl next"), desc="Next"),
 
     # launch rofi
-    Key([alt], "r", lazy.spawn("rofi -show drun"), desc="Launch rofi"),
+    Key([alt], "r", lazy.spawn("rofi  -config ~/.config/qtile/configs/config.rasi -show drun"), desc="Launch rofi"),
     # A list of available commands that can be bound to keys can be found
     # at https://docs.qtile.org/en/latest/manual/config/lazy.html
     # Switch between windows
