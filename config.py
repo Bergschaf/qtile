@@ -71,7 +71,8 @@ def autostart():
 
 keys = [
     # Wallpaper change str alt shift w
-    Key([alt], "b", lazy.spawn(f"python {os.path.expanduser('~/.config/qtile/wallpaper_set_random.py')}"), desc="Wallpaper change"),
+    Key([alt], "b", lazy.spawn(f"python {os.path.expanduser('~/.config/qtile/wallpaper_set_random.py')}"),
+        desc="Wallpaper change"),
 
     # media playpause str alt shift p
     Key([strg, alt, "shift"], "p", lazy.spawn("playerctl play-pause"), desc="Playpause"),
@@ -189,7 +190,11 @@ widget_defaults = dict(
     padding=7,
 )
 extension_defaults = widget_defaults.copy()
-
+battery = widget.Battery(format="{char} {percent:2.0%}", update_interval=5)
+if not battery:
+    battery = []
+else:
+    battery = [battery]
 screens = [
 
     Screen(
@@ -204,17 +209,13 @@ screens = [
                 widget.GroupBox(),
                 widget.Prompt(),
                 widget.WindowName(),
-                #widget.Wlan(interface="wlp3s0", format="{essid} {percent:2.0%}"),
-                #widget.Systray(),
-                widget.Battery(format="{char} {percent:2.0%}", update_interval=5),
-
-                widget.Clock(padding=30),
-
-                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-                # widget.StatusNotifier(),
+                # widget.Wlan(interface="wlp3s0", format="{essid} {percent:2.0%}"),
                 # widget.Systray(),
+            ] + battery + [widget.Clock(padding=30)],
 
-            ],
+            # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
+            # widget.StatusNotifier(),
+            # widget.Systray(),
             30,
             # set background color to have a transparent bar
             background=["#00000040"],
