@@ -206,7 +206,7 @@ screens = [
                 widget.WindowName(),
                 #widget.Wlan(interface="wlp3s0", format="{essid} {percent:2.0%}"),
                 #widget.Systray(),
-                widget.Battery(format="{char} {percent:2.0%}"),
+                widget.Battery(format="{char} {percent:2.0%}", update_interval=5),
 
                 widget.Clock(padding=30),
 
