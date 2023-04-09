@@ -89,6 +89,13 @@ def autostart():
         subprocess.Popen(p)
 
 
+def check_battery():
+    # Returns True if battery is present
+    if not any("BAT" in i for i in [os.listdir("/sys/class/power_supply/")]):
+        return False
+    return True
+
+
 keys = [
     # Wallpaper change str alt shift w
     Key([alt], "b", lazy.spawn(f"python {os.path.expanduser('~/.config/qtile/wallpaper_set_random.py')}"),
@@ -212,12 +219,11 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 # watt
-battery = widget.Battery(format="{char} {percent:2.0%} {watt:.2f}W", update_interval=5)
-try:
-    x = battery.height
-    batter = [battery]
-except AttributeError:
+if check_battery():
+    battery = [widget.Battery(format="{char} {percent:2.0%}", update_interval=5)]
+else:
     battery = []
+
 
 screens = [
 
