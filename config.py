@@ -91,7 +91,7 @@ def autostart():
 
 def check_battery():
     # Returns True if battery is present
-    if not any("BAT" in i for i in [os.listdir("/sys/class/power_supply/")]):
+    if not any("BAT" in i for i in os.listdir("/sys/class/power_supply/")):
         return False
     return True
 
@@ -240,8 +240,8 @@ screens = [
                 widget.Prompt(),
                 widget.WindowName(),
                 # widget.Wlan(interface="wlp3s0", format="{essid} {percent:2.0%}"),
-                widget.Systray(),
-            ] + battery + [widget.Clock(padding=30)],
+
+            ] + battery + [widget.Systray(),widget.Clock(padding=15)],
 
             # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
             # widget.StatusNotifier(),
