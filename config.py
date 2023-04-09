@@ -39,14 +39,29 @@ strg = "control"
 
 terminal = guess_terminal()
 
+def handle_exception(e):
+    if not os.path.exists("~/.config/qtile/logs/"):
+        os.mkdir("~/.config/qtile/logs/")
+    if os.path.exists(os.path.expanduser("~/.config/qtile/logs/log")):
+        content = open(os.path.expanduser("~/.config/qtile/logs/log")).read()
+    else:
+        content = ""
+    with open(os.path.expanduser("~/.config/qtile/logs/log"), "w") as f:
+        # the content of the file + the error with timestamp
+        f.write(content + "\n" + str(e))
 
 @hook.subscribe.startup_once
 def autostart_once():
-    subprocess.call([os.path.expanduser("~/.config/qtile/scripts/autostart_once.sh")])
+    try:
+        subprocess.call([os.path.expanduser("~/.config/qtile/scripts/autostart_once.sh")])
+        open("lkjsdfjkljdsf")
+    except Exception as e:
+        handle_exception(e)
+
     try:
         subprocess.Popen(["python", os.path.expanduser("~/.config/qtile/wallpaper_change.py")])
-    except Exception:
-        pass
+    except Exception as e:
+        handle_exception(e)
 
 
 @hook.subscribe.startup
