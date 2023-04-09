@@ -42,6 +42,7 @@ terminal = guess_terminal()
 
 @hook.subscribe.startup_once
 def autostart_once():
+    subprocess.call([os.path.expanduser("~/.config/qtile/scripts/autostart_once.sh")])
     try:
         subprocess.Popen(["python", os.path.expanduser("~/.config/qtile/wallpaper_change.py")])
     except Exception:
