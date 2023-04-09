@@ -57,8 +57,8 @@ def handle_exception(e):
 @hook.subscribe.startup_once
 def autostart_once():
     try:
-        subprocess.call([os.path.expanduser("~/.config/qtile/scripts/autostart_once.sh")])
-        open("lkjsdfjkljdsf")
+        subprocess.call(["bash",os.path.expanduser("~/.config/qtile/scripts/autostart.sh")])
+
     except Exception as e:
         handle_exception(e)
 
