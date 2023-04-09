@@ -8,7 +8,8 @@ function run {
 }
 
 
-
+# make rofi script thing executable
+chmod +x ~/.config/qtile/scripts/rofi-power-menu
 #starting utility applications at boot time
 #lxsession &
 run nm-applet &
