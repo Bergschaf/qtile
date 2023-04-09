@@ -39,16 +39,20 @@ strg = "control"
 
 terminal = guess_terminal()
 
+
 def handle_exception(e):
-    if not os.path.exists("~/.config/qtile/logs/"):
-        os.mkdir("~/.config/qtile/logs/")
-    if os.path.exists(os.path.expanduser("~/.config/qtile/logs/log")):
-        content = open(os.path.expanduser("~/.config/qtile/logs/log")).read()
+    log_dir = os.path.expanduser("~/.config/qtile/logs/")
+    log_file = os.path.expanduser("~/.config/qtile/logs/log")
+    if not os.path.exists(log_dir):
+        os.mkdir(log_dir)
+    if os.path.exists(log_file):
+        content = open(log_file, "r").read()
     else:
         content = ""
-    with open(os.path.expanduser("~/.config/qtile/logs/log"), "w") as f:
+    with open(log_file, "w") as f:
         # the content of the file + the error with timestamp
         f.write(content + "\n" + str(e))
+
 
 @hook.subscribe.startup_once
 def autostart_once():
@@ -144,7 +148,7 @@ keys = [
         lazy.layout.toggle_split(),
         desc="Toggle between split and unsplit sides of stack",
     ),
-    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),# Drag floatiicomng layouts.
+    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),  # Drag floatiicomng layouts.
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
@@ -260,7 +264,7 @@ screens = [
                 widget.GroupBox(),
                 widget.Prompt(),
                 widget.WindowName(),
-                #widget.Systray(),
+                # widget.Systray(),
                 widget.Clock(padding=30),
 
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
