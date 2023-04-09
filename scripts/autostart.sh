@@ -14,7 +14,7 @@ function run {
 run nm-applet &
 #run pamac-tray &
 numlockx on &
-blueman-applet &
+#blueman-applet &
 #flameshot &
 #picom --config $HOME/.config/picom/picom.conf &
 #picom --config .config/picom/picom-blur.conf --experimental-backends &
