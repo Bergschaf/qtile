@@ -57,7 +57,7 @@ def handle_exception(e):
 @hook.subscribe.startup_once
 def autostart_once():
     try:
-        subprocess.call(["bash",os.path.expanduser("~/.config/qtile/scripts/autostart.sh")])
+        subprocess.call(["bash", os.path.expanduser("~/.config/qtile/scripts/autostart.sh")])
 
     except Exception as e:
         handle_exception(e)
@@ -162,7 +162,9 @@ keys = [
     Key([alt], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([win], "l", lazy.spawn(f"rofi -show power-menu -modi power-menu:{os.path.expanduser('/scripts/rofi-power-menu')}"), desc="Lock the screen"),
+    Key([win], "l", lazy.spawn(
+        f"rofi -show power-menu -modi power-menu:{os.path.expanduser('~/.config/qtile/scripts/rofi-power-menu')}"),
+        desc="Lock the screen"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 ]
 groups = [Group("1", spawn="discord"), Group("2", spawn="spotify")]
@@ -224,7 +226,6 @@ if check_battery():
 else:
     battery = []
 
-
 screens = [
 
     Screen(
@@ -241,7 +242,7 @@ screens = [
                 widget.WindowName(),
                 # widget.Wlan(interface="wlp3s0", format="{essid} {percent:2.0%}"),
 
-            ] + battery + [widget.Systray(),widget.Clock(padding=15)],
+            ] + battery + [widget.Systray(), widget.Clock(padding=15)],
 
             # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
             # widget.StatusNotifier(),
