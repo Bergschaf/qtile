@@ -1,6 +1,7 @@
 import os
 
 CONFIG_DIR = "~/.config/qtile/configs"
+
 config_dirs = ["alacritty", "fish", "starship", "rofi", "conky", "dunst"]
 config = [
     ("alacritty.yml", "~/.config/alacritty/alacritty.yml"),
@@ -13,9 +14,9 @@ config = [
 
 def check_dirs():
     for dir in config_dirs:
-        if not os.path.isdir(os.path.join(CONFIG_DIR, dir)):
+        if not os.path.isdir(os.path.join(os.path.expanduser("~/.config"), dir)):
             print(f"Creating directory: {dir}")
-            os.mkdir(os.path.join(CONFIG_DIR, dir))
+            os.mkdir(os.path.join(os.path.expanduser("~/.config"), dir))
 
 
 def cp_here():
