@@ -215,7 +215,7 @@ screens = [
                 widget.Prompt(),
                 widget.WindowName(),
                 # widget.Wlan(interface="wlp3s0", format="{essid} {percent:2.0%}"),
-                # widget.Systray(),
+                widget.Systray(),
             ] + battery + [widget.Clock(padding=30)],
 
             # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
@@ -245,7 +245,7 @@ screens = [
                 widget.GroupBox(),
                 widget.Prompt(),
                 widget.WindowName(),
-                widget.Systray(),
+                #widget.Systray(),
                 widget.Clock(padding=30),
 
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
