@@ -162,7 +162,7 @@ keys = [
     Key([alt], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([win], "l", lazy.spawn("slock"), desc="Lock the screen"),
+    Key([win], "l", lazy.spawn(f"rofi -show power-menu -modi power-menu:{os.path.expanduser('/scripts/rofi-power-menu')}"), desc="Lock the screen"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 ]
 groups = [Group("1", spawn="discord"), Group("2", spawn="spotify")]
