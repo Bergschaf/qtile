@@ -192,10 +192,12 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 # watt
 battery = widget.Battery(format="{char} {percent:2.0%} {watt:.2f}W", update_interval=5)
-if not battery:
+try:
+    x = battery.height
+    batter = [battery]
+except AttributeError:
     battery = []
-else:
-    battery = [battery]
+
 screens = [
 
     Screen(
