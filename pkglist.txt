@@ -9,3 +9,5 @@ picom-ibhagwan-git
 slock
 ttf-firacode-nerd
 python-iwlib
+ttf-jetbrains-mono
+neofetch
