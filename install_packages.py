@@ -15,8 +15,8 @@ if __name__ == '__main__':
     parser.add_argument("-i", "--important", help="install only important packages", action="store_true")
     parser.add_argument("-a", "--all", help="install all packages", action="store_true")
     args = parser.parse_args()
-    if args.important:
-        subprocess.run(COMMAND_IMPORTANT, shell=True)
-    else:
-        subprocess.run(COMMAND_IMPORTANT, shell=True)
+    subprocess.run(COMMAND_IMPORTANT, shell=True)
+    # transparent lockscreen
+    subprocess.run("betterlockscreen -u . --fx color --color #000000", shell=True)
+    if not args.important:
         subprocess.run(COMMAND_ALL, shell=True)

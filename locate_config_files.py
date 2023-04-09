@@ -2,13 +2,14 @@ import os
 
 CONFIG_DIR = "~/.config/qtile/configs"
 
-config_dirs = ["alacritty", "fish", "starship", "rofi", "conky", "dunst"]
+config_dirs = ["alacritty", "fish", "starship", "rofi", "conky", "dunst", "betterlockscreen"]
 config = [
     ("alacritty.yml", "~/.config/alacritty/alacritty.yml"),
     ("config.fish", "~/.config/fish/config.fish"),
     ("starship.toml", "~/.config/starship.toml"),
     ("config.rasi", "~/.config/rofi/config.rasi"),
     ("conky.conf", "~/.config/conky/conky.conf"),
+    ("betterlockscreenrc", "~/.config/betterlockscreenrc"),
 ]
 
 

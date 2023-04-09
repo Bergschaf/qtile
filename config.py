@@ -163,7 +163,7 @@ keys = [
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([win], "l", lazy.spawn(
-        f"rofi -show power-menu -modi power-menu:{os.path.expanduser('~/.config/qtile/scripts/rofi-power-menu')}"),
+        f"betterlockscreen --lock"),
         desc="Lock the screen"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 ]

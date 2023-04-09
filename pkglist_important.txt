@@ -10,3 +10,4 @@ networkmanager
 network-manager-applet
 gnome-keyring
 dunst
+betterlockscreen
