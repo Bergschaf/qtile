@@ -104,6 +104,8 @@ alias lt='exa -aT --color=always --group-directories-first --icons' # tree listi
 alias l.="exa -a | egrep '^\.'"                                     # show only dotfiles
 alias ip="ip -color"
 
+alias sus="systemctl suspend"
+
 # Replace some more things with better alternatives
 alias cat='bat --style header --style snip --style changes --style header'
 [ ! -x /usr/bin/yay ] && [ -x /usr/bin/paru ] && alias yay='paru'
