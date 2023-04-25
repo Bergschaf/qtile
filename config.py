@@ -26,7 +26,7 @@ import os.path
 
 from libqtile import bar, layout, widget, hook
 
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 import subprocess
@@ -76,17 +76,11 @@ def autostart():
         # "feh --bg-fill /home/bergschaf/.config/qtile/wallpapers/Metall SGS.png",
         "picom --config ~/.config/qtile/picom-blur.conf",
         "xmodmap ~/.config/qtile/.xmodmap",
+        "chmod +x ~/.screenlayout/default.sh && ~/.screenlayout/default.sh",
     ]
-    processes = [
-        ["xrandr", "--output", "DP-0", "--off", "--output", "DP-1", "--off", "--output", "DP-2", "--off", "--output",
-         "DP-3", "--mode", "1680x1050", "--pos", "2560x195", "--rotate", "normal", "--output", "HDMI-0", "--off",
-         "--output", "DP-4", "--mode", "2560x1440", "--pos", "0x0", "--rotate", "normal", "--output", "DP-5", "--off"],
 
-    ]
     for p in shell_processes:
         subprocess.Popen(p, shell=True)
-    for p in processes:
-        subprocess.Popen(p)
 
 
 def check_battery():
@@ -102,9 +96,9 @@ keys = [
         desc="Wallpaper change"),
 
     # media playpause str alt shift p
-    Key([strg, alt, "shift"], "p", lazy.spawn("playerctl play-pause"), desc="Playpause"),
+    Key([alt], "0", lazy.spawn("playerctl play-pause"), desc="Playpause"),
     # media next str alt shift s
-    Key([strg, alt, "shift"], "s", lazy.spawn("playerctl next"), desc="Next"),
+    Key([alt], "p", lazy.spawn("playerctl next"), desc="Next"),
 
     # launch rofi
     Key([alt], "r", lazy.spawn("rofi  -config ~/.config/qtile/configs/config.rasi -show drun"), desc="Launch rofi"),
@@ -117,8 +111,10 @@ keys = [
     Key([alt], "i", lazy.layout.up(), desc="Move focus up"),
     # Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
     # Switch between screens
-    Key([alt], "u", lazy.to_screen(1), desc="Keyboard focus to monitor 1"),
-    Key([alt], "o", lazy.to_screen(0), desc="Keyboard focus to monitor 2"),
+    Key([alt], "u", lazy.to_screen(0), desc="Keyboard focus to monitor 1"),
+    Key([alt], "o", lazy.to_screen(1), desc="Keyboard focus to monitor 2"),
+    #Key([alt], "p", lazy.to_screen(3), desc="Keyboard focus to monitor 3"),
+    #Key([alt], "m", lazy.to_screen(2), desc="Keyboard focus to monitor 4"),
     # Key([alt], "space", lazy.next_screen(), desc="Move focus to next monitor"),
 
     # Move windows between left/right columns or move up/down in current stack.
@@ -140,6 +136,9 @@ keys = [
     Key([alt, "control"], "d", lazy.layout.shrink_right(), desc="Shrink window to the right"),
     Key([alt, "control"], "s", lazy.layout.shrink_down(), desc="Shrink window down"),
     Key([alt, "control"], "w", lazy.layout.shrink_up(), desc="Shrink window up"),
+
+    Key([alt], "f", lazy.window.toggle_floating(), desc="Toggle floating"),
+    Key([alt], "t", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen"),
 
     # move between workspaces when pressing
 
@@ -290,6 +289,7 @@ screens = [
         # wallpaper="~/Pictures/garuda-wallpapers/src/garuda-wallpapers/Darkwing Beast.jpg",
         # wallpaper_mode="fill"
     ),
+
 ]
 
 # Drag floating layouts.
@@ -322,7 +322,7 @@ reconfigure_screens = True
 
 # If things like steam games want to auto-minimize themselves when losing
 # focus, should we respect this or not?
-auto_minimize = True
+auto_minimize = False
 
 # When using the Wayland backend, this can be used to configure input devices.
 wl_input_rules = None
