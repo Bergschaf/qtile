@@ -68,6 +68,7 @@ def autostart_once():
         handle_exception(e)
 
 
+
 @hook.subscribe.startup
 def autostart():
     import locate_config_files

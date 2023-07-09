@@ -36,3 +36,5 @@ dunst &
 #run spotify &
 #run atom &
 #run telegram-desktop &
+
+/usr/bin/emacs --daemon &
