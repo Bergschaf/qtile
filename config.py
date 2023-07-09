@@ -96,9 +96,9 @@ keys = [
         desc="Wallpaper change"),
 
     # media playpause str alt shift p
-    Key([alt], "0", lazy.spawn("playerctl play-pause"), desc="Playpause"),
+    Key([alt], "0", lazy.spawn("playerctl play-pause -p spotify"), desc="Playpause"),
     # media next str alt shift s
-    Key([alt], "p", lazy.spawn("playerctl next"), desc="Next"),
+    Key([alt], "p", lazy.spawn("playerctl next -p spotify"), desc="Next"),
 
     # launch rofi
     Key([alt], "r", lazy.spawn("rofi  -config ~/.config/qtile/configs/config.rasi -show drun"), desc="Launch rofi"),
